@@ -1,0 +1,129 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Zenstee Brand Colors */
+    --background: 0 0% 0%; /* Matte Black */
+    --foreground: 0 0% 100%; /* Pure White */
+
+    --card: 0 0% 5%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 0 0% 5%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 0 100% 50%; /* Pure Red */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 70%;
+
+    --accent: 51 100% 50%; /* Yellow for .ai */
+    --accent-foreground: 0 0% 0%;
+
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 15%;
+    --ring: 0 100% 50%;
+
+    --radius: 0.5rem;
+
+    /* Custom Brand Gradients */
+    --gradient-red: linear-gradient(135deg, hsl(0 100% 50% / 0.3), hsl(0 100% 30% / 0.1));
+    --glow-red: 0 0 40px hsl(0 100% 50% / 0.6);
+    --glow-yellow: 0 0 30px hsl(51 100% 50% / 0.8);
+  }
+
+  .dark {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 5%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 5%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 0 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 70%;
+    --accent: 51 100% 50%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 20%;
+    --input: 0 0% 15%;
+    --ring: 0 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Poppins', sans-serif;
+    cursor: default;
+  }
+
+  /* Custom cursor glow effect */
+  body::before {
+    content: '';
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: radial-gradient(circle, hsl(0 100% 50% / 0.4), transparent);
+    pointer-events: none;
+    z-index: 9999;
+    animation: cursor-glow 2s infinite;
+  }
+
+  @keyframes cursor-glow {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.2); }
+  }
+
+  /* Text glow animations */
+  .text-glow-red {
+    text-shadow: 0 0 10px hsl(0 100% 50% / 0.8), 0 0 20px hsl(0 100% 50% / 0.5);
+  }
+
+  .text-glow-yellow {
+    text-shadow: 0 0 10px hsl(51 100% 50% / 0.8), 0 0 20px hsl(51 100% 50% / 0.6);
+    animation: flame-flicker 2s infinite;
+  }
+
+  @keyframes flame-flicker {
+    0%, 100% { text-shadow: 0 0 10px hsl(51 100% 50% / 0.8), 0 0 20px hsl(51 100% 50% / 0.6); }
+    50% { text-shadow: 0 0 20px hsl(51 100% 50% / 1), 0 0 30px hsl(51 100% 50% / 0.8); }
+  }
+
+  /* Loading letter animation */
+  @keyframes letter-reveal {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  .letter-animate {
+    animation: letter-reveal 0.5s ease-out forwards;
+  }
+
+  /* Smooth transitions */
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
